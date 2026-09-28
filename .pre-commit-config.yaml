@@ -1,0 +1,85 @@
+# Pre-commit Hooks Configuration
+# Run: pip install pre-commit
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Prevent giant files from being committed
+      - id: check-added-large-files
+        args: ['--maxkb=5000']
+      
+      # Check for files that would conflict in merge
+      - id: check-merge-conflict
+      
+      # Check YAML files
+      - id: check-yaml
+        args: ['--safe']
+      
+      # Check JSON files
+      - id: check-json
+      
+      # Fix end of file newlines
+      - id: end-of-file-fixer
+      
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+      
+      # Check for secrets (keys, tokens, etc.)
+      - id: detect-private-key
+
+  # Python code formatting (Black)
+  - repo: https://github.com/psf/black
+    rev: 24.1.1
+    hooks:
+      - id: black
+        language_version: python3.10
+        args: ['--line-length=100']
+
+  # Python imports sorting (isort)
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ['--profile=black', '--line-length=100']
+
+  # Python linting (flake8)
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=100', '--extend-ignore=E203,W503']
+        additional_dependencies: ['flake8-docstrings']
+
+  # Python type checking (mypy)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies: ['types-all']
+        args: ['--ignore-missing-imports']
+        files: ^src/
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: ['--config-data={extends: default, rules: {line-length: {max: 120}}}']
+        files: \.(yaml|yml)$
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix']
+
+# Global exclusions
+exclude: ^(\.venv|venv|\.git|__pycache__|build|dist|\.egg-info)
+
+# Fail fast: stop on first failure (set to false to run all)
+fail_fast: false
+

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+mlruns/
+.pytest_cache/
+.dvc/config.local
+.dvc/cache
+.dvc/tmp
+# Model bundle is a CI build artifact, never committed (tracked in MLflow)
+models/*
+!models/.gitkeep

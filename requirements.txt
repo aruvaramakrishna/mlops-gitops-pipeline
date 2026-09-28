@@ -1,0 +1,11 @@
+# Training / CI environment (pinned for reproducibility)
+scikit-learn==1.4.2
+pandas==2.2.2
+joblib==1.4.2
+mlflow==2.14.1
+dvc[azure]==3.51.2
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+httpx==0.27.0
+pytest==8.2.2
+flake8==7.1.0

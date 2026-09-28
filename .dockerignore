@@ -1,0 +1,5 @@
+*
+!requirements-serve.txt
+!src/app.py
+!models/model.pkl
+!models/metadata.json

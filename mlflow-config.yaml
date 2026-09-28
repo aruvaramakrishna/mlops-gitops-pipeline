@@ -1,0 +1,80 @@
+# MLflow Configuration
+# Set environment variables or use mlflow cli with this config
+
+# Tracking Server Configuration
+tracking:
+  # Remote tracking URI (replace with your server)
+  # Format: http://mlflow-server:5000 or https://mlflow.example.com
+  # Leave empty to use local ./mlruns directory (development only)
+  uri: ${MLFLOW_TRACKING_URI:-http://localhost:5000}
+  
+  # Authentication (if using tracking server)
+  username: ${MLFLOW_TRACKING_USERNAME}
+  password: ${MLFLOW_TRACKING_PASSWORD}
+  
+  # Artifact storage backend
+  # Options: local, s3, azure, gcs
+  artifact_backend: azure
+  artifact_path: azure://mlflow-artifacts
+  azure_account_name: ${AZURE_STORAGE_ACCOUNT}
+  azure_container_name: mlflow-artifacts
+
+# Model Registry Configuration
+registry:
+  # Model registry backend (shared with tracking server)
+  # Leave empty to use same server as tracking
+  server_uri: null
+  
+  # Model name
+  model_name: iris-classifier
+
+# Experiment Configuration
+experiment:
+  # Experiment name (auto-created if not exists)
+  name: iris-training
+  
+  # Tags applied to all runs in this experiment
+  tags:
+    env: production
+    team: ml-ops
+    project: ml-gitops
+
+# Run Configuration
+run:
+  # Tags applied to each run
+  tags:
+    framework: scikit-learn
+    dataset: iris
+  
+  # Nested runs for hyperparameter tuning
+  nested_runs: false
+
+# Logging Configuration
+logging:
+  # Metrics logging frequency (seconds)
+  metrics_flush_interval: 10
+  
+  # Log system metrics (CPU, memory, etc.)
+  log_system_metrics: true
+  
+  # Log input examples and model signature
+  log_signature: true
+
+# Data & Artifact Configuration
+artifacts:
+  # Preserve run artifacts after model promotion
+  retention_days: 90
+  
+  # Log dataset statistics
+  log_datasets: true
+  
+  # Log model predictions on validation set
+  log_predictions: false
+
+# Authentication (CI/CD)
+# For GitHub Actions OIDC:
+# - AZURE_CLIENT_ID
+# - AZURE_TENANT_ID  
+# - AZURE_SUBSCRIPTION_ID
+# For Azure ML Workspace:
+# - Use service principal or managed identity

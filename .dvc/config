@@ -1,0 +1,12 @@
+['remote "azremote"']
+    url = azure://dvc/dvcstore
+    account_name = stmlopsdvc123
+
+[core]
+    remote = azremote
+    autostage = true
+    analytics = false
+
+[cache]
+    type = copy
+    protected = true

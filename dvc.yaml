@@ -1,0 +1,38 @@
+# DVC Pipeline Definition
+# Executed: dvc repro
+# Tracks data, code, and metrics lineage
+
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/iris.csv
+    params:
+      - PARAMS
+    outs:
+      - models/model.pkl:
+          cache: true
+      - models/model.pkl.sha256
+      - models/metadata.json
+    metrics:
+      - models/metrics.json:
+          cache: false
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.pkl
+      - models/metadata.json
+    params:
+      - PARAMS
+    metrics:
+      - models/metrics.json:
+          cache: false
+
+params:
+  PARAMS:
+    n_estimators: 150
+    max_depth: 5
+    random_state: 42

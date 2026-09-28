@@ -1,0 +1,45 @@
+# Git Attributes
+
+# Auto normalize line endings
+* text=auto
+
+# Python
+*.py text eol=lf
+*.pyx text eol=lf
+*.pyi text eol=lf
+*.pyc binary
+*.pyo binary
+*.egg-info/ binary
+
+# YAML / Config
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# Bash / Shell
+*.sh text eol=lf
+*.bash text eol=lf
+
+# JSON
+*.json text eol=lf
+
+# Docker
+Dockerfile text eol=lf
+.dockerignore text eol=lf
+
+# Git
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Binary files
+*.pkl binary
+*.joblib binary
+*.gz binary
+*.zip binary
+*.tar binary
+
+# DVC
+*.dvc text eol=lf

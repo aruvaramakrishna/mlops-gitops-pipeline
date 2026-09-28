@@ -1,0 +1,31 @@
+# CODEOWNERS - Define code ownership and review requirements
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners (required for all changes)
+* @owner-username
+
+# Training & ML code
+src/train.py @ml-owner
+src/evaluate.py @ml-owner
+
+# Application code
+src/app.py @backend-owner
+tests/ @qa-owner
+
+# Infrastructure & Deployment
+k8s/ @devops-owner
+.github/workflows/ @devops-owner
+Dockerfile @devops-owner
+
+# Documentation
+*.md @technical-writer
+WORKFLOW.md @devops-owner
+ARCHITECTURE.md @tech-lead
+
+# Configuration
+requirements*.txt @devops-owner
+dvc.yaml @ml-owner
+.flake8 @tech-lead
+
+# Note: Replace @owner-username, @ml-owner, etc. with actual GitHub usernames
+# These ensure the right people review changes to critical areas

@@ -1,0 +1,7 @@
+# Runtime image only. scikit-learn/joblib/pandas MUST match requirements.txt
+# so the pickle produced in CI loads identically in the container.
+scikit-learn==1.4.2
+pandas==2.2.2
+joblib==1.4.2
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
